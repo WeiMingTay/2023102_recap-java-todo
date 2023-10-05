@@ -31,18 +31,20 @@ export default function App() {
     return (
         <div className="main-content">
             <h1>Todos</h1>
-            <AddTodo/>
-            {
-                allPossibleStatus.map(status => {
-                    const filteredTodos = todos.filter(todo => todo.status === status)
-                    return <TodoColumn
-                        status={status}
-                        todos={filteredTodos}
-                        onTodoItemChange={getTodos}
-                        key={status}
-                    />
-                })
-            }
+            <AddTodo onTodoItemChange={getTodos}/>
+            <section className={"section-columns"}>
+                {
+                    allPossibleStatus.map(status => {
+                        const filteredTodos = todos.filter(todo => todo.status === status)
+                        return <TodoColumn
+                            status={status}
+                            todos={filteredTodos}
+                            onTodoItemChange={getTodos}
+                            key={status}
+                        />
+                    })
+                }
+            </section>
 
         </div>
     )

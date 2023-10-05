@@ -4,14 +4,19 @@
   box-sizing: border-box;
 }
 
-.main-content section {
+.main-content .section-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.main-content .section-columns section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.main-content section .todo-card {
+.main-content .section-columns section .todo-card {
   border: 1px solid red;
-  width: 200px;
+  min-width: 200px;
 }
 
 /*# sourceMappingURL=Todo.css.map */
