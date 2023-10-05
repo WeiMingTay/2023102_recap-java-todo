@@ -24,6 +24,7 @@ export default function TodoCard(props: TodoCardProps) {
             ...props.todo,
             description: newDescription
         } as Todo)
+            .then(props.onTodoItemChange)
 
     }
 
