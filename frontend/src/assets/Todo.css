@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-content section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.main-content section .todo-card {
+  border: 1px solid red;
+  width: 200px;
+}
+
+/*# sourceMappingURL=Todo.css.map */

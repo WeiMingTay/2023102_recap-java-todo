@@ -1,0 +1,19 @@
+import {Todo, TodoStatus} from "../assets/todos.ts";
+import TodoCard from "./TodoCard.tsx";
+
+type TodoColumnProps = {
+    todos: Todo[],
+    status: TodoStatus,
+
+}
+export default function TodoColumn(props: TodoColumnProps) {
+    return (<>
+<h2>{props.status.toLowerCase()}</h2>
+            <section>
+            {
+                props.todos.map(todo => <TodoCard todo={todo} key={todo.id}/>)
+            }
+            </section>
+        </>
+    );
+}
