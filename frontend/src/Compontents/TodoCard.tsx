@@ -1,4 +1,4 @@
-import {Todo} from "../assets/todos.ts";
+import {Todo, TodoStatus} from "../assets/todos.ts";
 import "../assets/Todo.css"
 import axios from "axios";
 
@@ -11,7 +11,15 @@ export default function TodoCard(props: TodoCardProps) {
 
     function deleteThisItem() {
         axios.delete("/api/todo/" + props.todo.id)
-           .then(props.onTodoItemChange)
+            .then(props.onTodoItemChange)
+    }
+
+    function move(targetStatus: TodoStatus) {
+        axios.put("/api/todo/" + props.todo.id, {
+            ...props.todo,
+            status: targetStatus,
+        } as Todo)
+            .then(props.onTodoItemChange)
     }
 
     return (<article className="todo-card">
@@ -19,6 +27,24 @@ export default function TodoCard(props: TodoCardProps) {
         <p>{props.todo.description}</p>
         <p>{props.todo.status}</p>
         <button onClick={deleteThisItem}>Delete</button>
-        </article>);
+        <div>
+            {
+                props.todo.status === "OPEN"
+                    ? <div></div>
+                    : (
+                        props.todo.status === "DONE"
+                            ? <button onClick={() => move("IN_PROGRESS")}>◀</button>
+                            : <button onClick={() => move("OPEN")}>◀</button>)
+            }
+            {
+                props.todo.status === "DONE"
+                    ? <div></div>
+                    : (
+                        props.todo.status === "OPEN"
+                            ? <button onClick={() => move("IN_PROGRESS")}>▶</button>
+                            : <button onClick={() => move("DONE")}>▶</button>)
+            }
+        </div>
+    </article>);
 }
 
