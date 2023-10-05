@@ -3,6 +3,7 @@ import {Todo, allPossibleStatus} from "./assets/todos.ts";
 import axios from "axios";
 import "./assets/Todo.css"
 import TodoColumn from "./Compontents/TodoColumn.tsx";
+import AddTodo from "./Compontents/AddTodo.tsx";
 
 export default function App() {
     const [todos, setTodos] = useState<Todo[]>();
@@ -30,7 +31,7 @@ export default function App() {
     return (
         <div className="main-content">
             <h1>Todos</h1>
-
+            <AddTodo/>
             {
                 allPossibleStatus.map(status => {
                     const filteredTodos = todos.filter(todo => todo.status === status)

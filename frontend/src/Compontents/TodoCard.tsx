@@ -15,7 +15,7 @@ export default function TodoCard(props: TodoCardProps) {
     }
 
     return (<article className="todo-card">
-        <p>{props.todo.id}</p>
+        {/*<p>{props.todo.id}</p>*/}
         <p>{props.todo.description}</p>
         <p>{props.todo.status}</p>
         <button onClick={deleteThisItem}>Delete</button>
