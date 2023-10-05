@@ -1,6 +1,7 @@
 import {Todo, TodoStatus} from "../assets/todos.ts";
 import "../assets/Todo.css"
 import axios from "axios";
+import {ChangeEvent, useState} from "react";
 
 
 type TodoCardProps = {
@@ -9,9 +10,21 @@ type TodoCardProps = {
 }
 export default function TodoCard(props: TodoCardProps) {
 
+    const [description, setDescription] = useState(props.todo.description);
+
     function deleteThisItem() {
         axios.delete("/api/todo/" + props.todo.id)
             .then(props.onTodoItemChange)
+    }
+
+    function changeText(event: ChangeEvent<HTMLInputElement>) {
+        const newDescription = event.target.value;
+        setDescription(newDescription);
+        axios.put("/api/todo/"+props.todo.id, {
+            ...props.todo,
+            description: newDescription
+        } as Todo)
+
     }
 
     function move(targetStatus: TodoStatus) {
@@ -25,7 +38,8 @@ export default function TodoCard(props: TodoCardProps) {
     return (<article className="todo-card">
         {/*<p>{props.todo.id}</p>*/}
         <p>{props.todo.description}</p>
-        <p>{props.todo.status}</p>
+        <input type="text" value={description} onInput={changeText}/>
+        {/*<p>{props.todo.status}</p>*/}
         <button onClick={deleteThisItem}>Delete</button>
         <div>
             {
