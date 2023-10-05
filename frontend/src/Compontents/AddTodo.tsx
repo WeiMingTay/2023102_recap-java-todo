@@ -14,17 +14,36 @@ export default function AddTodo(props: AddTodoProps) {
         setText(event.target.value)
     }
 
+
     function saveTodo() {
-        if(text.trim() === "") {
+        if (text.trim() === "") {
             return;
         }
-        axios.post('/api/todo',
-            {
-                description: text,
-                status: "OPEN",
-            } as Todo)
-            .then(props.onTodoItemChange)
+        console.log("text:" + text)
         setText("");
+        axios.post('/api/todo', {
+            description: text,
+            status: "OPEN",
+        } as Todo)
+            .then(props.onTodoItemChange)
+          /*  .catch(error => {
+                console.error("Error in POST request:", error);
+
+                // Log detailed information about the error
+                if (error.response) {
+                    // Server responded with a non-2xx status code
+                    console.error("Response Data:", error.response.data);
+                    console.error("Response Status:", error.response.status);
+                    console.error("Response Headers:", error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    console.error("Request:", error.request);
+                } else {
+                    // Something else happened while setting up the request
+                    console.error("Error Details:", error.message);
+                }
+            });*/
+
     }
 
     return (

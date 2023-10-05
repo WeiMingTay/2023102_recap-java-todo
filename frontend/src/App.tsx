@@ -4,6 +4,7 @@ import axios from "axios";
 import "./assets/Todo.css"
 import TodoColumn from "./Compontents/TodoColumn.tsx";
 import AddTodo from "./Compontents/AddTodo.tsx";
+import TodoUebersicht from "./Compontents/TodoUebersicht.tsx";
 
 export default function App() {
     const [todos, setTodos] = useState<Todo[]>();
@@ -32,19 +33,24 @@ export default function App() {
         <div className="main-content">
             <h1>Todos</h1>
             <AddTodo onTodoItemChange={getTodos}/>
-            <section className={"section-columns"}>
-                {
-                    allPossibleStatus.map(status => {
-                        const filteredTodos = todos.filter(todo => todo.status === status)
-                        return <TodoColumn
-                            status={status}
-                            todos={filteredTodos}
-                            onTodoItemChange={getTodos}
-                            key={status}
-                        />
-                    })
-                }
-            </section>
+            <div>
+                <section className={"section-columns"}>
+                    {
+                        allPossibleStatus.map(status => {
+                            const filteredTodos = todos.filter(todo => todo.status === status)
+                            return <TodoColumn
+                                status={status}
+                                todos={filteredTodos}
+                                onTodoItemChange={getTodos}
+                                key={status}
+                            />
+                        })
+                    }
+                </section>
+                <section className={"todo-uebersicht"}>
+                    <TodoUebersicht todos={todos}/>
+                </section>
+            </div>
 
         </div>
     )

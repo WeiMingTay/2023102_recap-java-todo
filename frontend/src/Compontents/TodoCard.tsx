@@ -20,7 +20,7 @@ export default function TodoCard(props: TodoCardProps) {
     function changeText(event: ChangeEvent<HTMLInputElement>) {
         const newDescription = event.target.value;
         setDescription(newDescription);
-        axios.put("/api/todo/"+props.todo.id, {
+        axios.put("/api/todo/" + props.todo.id, {
             ...props.todo,
             description: newDescription
         } as Todo)
@@ -37,15 +37,18 @@ export default function TodoCard(props: TodoCardProps) {
     }
 
     return (<article className="todo-card">
-        {/*<p>{props.todo.id}</p>*/}
-        <p>{props.todo.description}</p>
-        <input type="text" value={description} onInput={changeText}/>
-        {/*<p>{props.todo.status}</p>*/}
-        <button onClick={deleteThisItem}>Delete</button>
         <div>
+            <p>{props.todo.id}</p>
+            {/*<p>{props.todo.description}</p>*/}
+            <input type="text" value={description} onInput={changeText}/>
+            {/*<p>{props.todo.status}</p>*/}
+        </div>
+        <div>
+            <button className="delete-btn" onClick={deleteThisItem}>Delete</button>
+
             {
                 props.todo.status === "OPEN"
-                    ? <div></div>
+                    ? <button className={"hidden-btn"}>◀</button>
                     : (
                         props.todo.status === "DONE"
                             ? <button onClick={() => move("IN_PROGRESS")}>◀</button>
@@ -53,7 +56,7 @@ export default function TodoCard(props: TodoCardProps) {
             }
             {
                 props.todo.status === "DONE"
-                    ? <div></div>
+                    ? <button className={"hidden-btn"}>▶</button>
                     : (
                         props.todo.status === "OPEN"
                             ? <button onClick={() => move("IN_PROGRESS")}>▶</button>
