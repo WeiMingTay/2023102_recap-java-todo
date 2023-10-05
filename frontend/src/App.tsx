@@ -37,6 +37,7 @@ export default function App() {
                     return <TodoColumn
                         status={status}
                         todos={filteredTodos}
+                        onTodoItemChange={getTodos}
                         key={status}
                     />
                 })

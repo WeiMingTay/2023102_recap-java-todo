@@ -4,6 +4,7 @@ import TodoCard from "./TodoCard.tsx";
 type TodoColumnProps = {
     todos: Todo[],
     status: TodoStatus,
+    onTodoItemChange: () => void
 
 }
 export default function TodoColumn(props: TodoColumnProps) {
@@ -11,7 +12,7 @@ export default function TodoColumn(props: TodoColumnProps) {
 <h2>{props.status.toLowerCase()}</h2>
             <section>
             {
-                props.todos.map(todo => <TodoCard todo={todo} key={todo.id}/>)
+                props.todos.map(todo => <TodoCard todo={todo} key={todo.id} onTodoItemChange={props.onTodoItemChange}/>)
             }
             </section>
         </>
