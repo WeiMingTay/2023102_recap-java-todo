@@ -39,9 +39,7 @@ export default function TodoCard(props: TodoCardProps) {
     return (<article className="todo-card">
         <div>
             <p>{props.todo.id}</p>
-            {/*<p>{props.todo.description}</p>*/}
             <input type="text" value={description} onInput={changeText}/>
-            {/*<p>{props.todo.status}</p>*/}
         </div>
         <div>
             <button className="delete-btn" onClick={deleteThisItem}>Delete</button>

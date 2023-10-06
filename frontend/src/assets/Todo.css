@@ -80,7 +80,7 @@ body {
   padding: 0.5rem 1rem;
 }
 .main-content div .todo-uebersicht div .status-open {
-  border: 1px solid hotpink;
+  border: 1px solid red;
 }
 .main-content div .todo-uebersicht div .status-inProgress {
   border: 1px dotted green;

@@ -49,7 +49,9 @@ body {
           div:last-of-type {
             /*INCLUDE MIT ANDEREM PARAMETER*/
             @include grid(.5rem);
-            grid-template-areas: "delete delete" "pfeil1  pfeil2";
+            grid-template-areas:
+                    "delete delete"
+                    "pfeil1  pfeil2";
 
             button {
               background-color: $secondaryColor;
@@ -90,7 +92,7 @@ body {
         }
 
         .status-open {
-          border: 1px solid $primaryColor;
+          border: 1px solid red;
         }
 
         .status-inProgress {
