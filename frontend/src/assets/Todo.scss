@@ -84,26 +84,29 @@ body {
       display: flex;
       flex-direction: row;
       gap: 1rem;
+
       div {
         width: fit-content;
+
         p {
           font-size: $fontSizeMedium;
           padding: .5rem 1rem;
         }
 
-        .status-open {
-          border: 1px solid red;
-        }
 
-        .status-inProgress {
-          border: 1px dotted $secondaryColor;
-        }
-
-        .status-done {
-          border: 2px solid $secondaryColor;
-        }
       }
     }
   }
 }
 
+.status-open {
+  border: 1px solid red;
+}
+
+.status-inProgress {
+  border: 1px dotted $secondaryColor;
+}
+
+.status-done {
+  border: 2px solid $secondaryColor;
+}
